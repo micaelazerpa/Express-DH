@@ -1,8 +1,12 @@
-const path = require('path');
+const listaPlatos=require('../dataBase/platos');
 
 const mainController={
-    renderHome: (req, res)=>{
-        res.sendFile(path.resolve(__dirname, '../views/home.html'))
+    index: (req, res)=>{
+        res.render('index',{data: listaPlatos})
+    },
+    detail: (req, res)=>{
+        const platoSearch = listaPlatos.find((plato)=> plato.id === req.params.id)
+        res.render('detalleMenu',{plato:platoSearch})
     }
 }
 module.exports=mainController;
